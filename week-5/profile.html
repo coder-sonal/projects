@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <style>
+            div{
+                visibility:hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" id="userId">
+        <input type="text" id="password">
+        <button id="login" onclick=checkBtn()>Log In</button>
+        <div id="details">
+            <p>Name:Sonal Singh<br>DOB:09/Aug/1990<br>Location:Banglore<br>Height:5.3feet<br>Weight:65kg<br>Hobbies:Music,
+                Dance,Travel<br>
+        </div>
+        <script>
+            function checkBtn(){
+                var val = document.getElementById("login");
+                if(val.innerHTML === "Log In") {
+                    login();
+                }else if(val.innerHTML === "Log Out") {
+                    logout();
+                }
+            }
+            function login(){
+                if( (document.getElementById("userId").value === "Sonal0809") && (document.getElementById("password").value === "Kalpana@123")){
+                    document.getElementById("details").style.visibility = "visible";
+                    document.getElementById("userId").style.visibility = "hidden";
+                    document.getElementById("password").style.visibility = "hidden";
+                    document.getElementById("login").innerHTML = "Log Out";
+                }else{
+                    alert("invalid")
+                }
+            }
+            function logout(){
+                document.getElementById("details").style.visibility = "hidden";
+                document.getElementById("userId").style.visibility = "visible";
+                document.getElementById("password").style.visibility = "visible";
+                document.getElementById("login").innerHTML = "Log In";
+                document.getElementById("userId").value = "";
+                document.getElementById("password").value = "";
+            }
+        </script>
+    </body>
+</html>
