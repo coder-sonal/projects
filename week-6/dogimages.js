@@ -1,6 +1,7 @@
 var metaData;
 $("#heading").hide();
 $("#info2").hide();
+$("#info3").hide();
 $("#back").click(function(){
     $("#info").show();
     $("#heading").hide();
@@ -8,6 +9,7 @@ $("#back").click(function(){
     $("#selectBreed").remove();
     $("#submit").remove();
     $("#display").remove();
+    $("#info3").hide();
 })
 $.ajax({
     url:"https://dog.ceo/api/breeds/list/all",
@@ -15,6 +17,7 @@ $.ajax({
     .done(function(res){
             metaData = Object.values(res);
             showList();
+            typesOfBreed()
     });
 function showList() {
    $("#listOfBreed").click(function(){
@@ -23,6 +26,7 @@ function showList() {
         $("#heading").show();
         $("#selectBreed").remove();
         $("#submit").remove();
+        $("#info3").hide();
         var breeds = metaData[0];
         var dropdown = document.createElement("select")
         dropdown.setAttribute('id', 'selectBreed');
@@ -88,5 +92,22 @@ $("#selectBreed").click(function() {
     $("#imageCard").val("");
     $("#imageBody").val("");
 })
-
+function typesOfBreed(){
+    $("#dogsBreed").click(function(){
+        $("#info3").show();
+        $("#info").hide();
+        $("#heading").hide();
+        $("#info2").hide();
+        $("#selectBreed").remove();
+        $("#submit").remove();
+        $("#display").remove();
+            var breeds = metaData[0]; 
+            Object.keys(breeds).map(function(breed) {
+                var name = document.createElement("p");
+                name.classList.add("h4","text-light","ml-sm-4","mt-sm-3")
+                name.innerHTML= breed.charAt(0).toUpperCase() + breed.slice(1);
+                $("#info3").append(name)
+            })
+        })
+}
 
